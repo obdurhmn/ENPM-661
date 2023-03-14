@@ -1,6 +1,6 @@
 #ENPM-661 project 2, Path planning for point robot using Dijkstra Algorithm
 
-#github link
+#github link: https://github.com/obdurhmn/ENPM-661
 #Importing all the required packages
 import cv2
 import time
