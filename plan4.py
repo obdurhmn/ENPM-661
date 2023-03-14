@@ -11,44 +11,44 @@ import heapq
 
 #function to move point robot upwards
 def move_up(robot_loc):
-    x = robot_loc[0]
-    y = robot_loc[1]
-    x -= 1
-    new_robot_loc = (x, y)
-    if x >= 0 and y >= 0:
+    i = robot_loc[0]
+    j = robot_loc[1]
+    i -= 1
+    new_robot_loc = (i, j)
+    if i >= 0 and j >= 0:
         return (new_robot_loc, True)
     else:
         return (robot_loc, False)
 
 #function to move point robot downwards
 def move_down(robot_loc):
-    x = robot_loc[0]
-    y = robot_loc[1]
-    x += 1
-    new_robot_loc = (x, y)
-    if x >= 0 and y >= 0:
+    i = robot_loc[0]
+    j = robot_loc[1]
+    i += 1
+    new_robot_loc = (i, j)
+    if i >= 0 and j >= 0:
         return (new_robot_loc, True)
-    else:`
+    else:
         return (robot_loc, False)
 
 #function to move point robot right
 def move_right(robot_loc):
-    x = robot_loc[0]
-    y = robot_loc[1]
-    y += 1
-    new_robot_loc = (x, y)
-    if x >= 0 and y >= 0:
+    i = robot_loc[0]
+    j = robot_loc[1]
+    j += 1
+    new_robot_loc = (i, j)
+    if i >= 0 and j >= 0:
         return (new_robot_loc, True)
     else:
         return (robot_loc, False)
 
 #function to move point robot left
 def move_left(robot_loc):
-    x = robot_loc[0]
-    y = robot_loc[1]
-    y -= 1
-    new_robot_loc = (x, y)
-    if x >= 0 and y >= 0:
+    i = robot_loc[0]
+    j = robot_loc[1]
+    j -= 1
+    new_robot_loc = (i, j)
+    if i >= 0 and j >= 0:
         return (new_robot_loc, True)
     else:
         return (robot_loc, False)
@@ -56,48 +56,48 @@ def move_left(robot_loc):
 
 #function to move robot up and right
 def move_upright(robot_loc):
-    x = robot_loc[0]
-    y = robot_loc[1]
-    x -= 1
-    y += 1
-    new_robot_loc = (x,y)
-    if x >= 0 and y >= 0:
+    i = robot_loc[0]
+    j = robot_loc[1]
+    i -= 1
+    j += 1
+    new_robot_loc = (i,j)
+    if i >= 0 and j >= 0:
         return (new_robot_loc, True)
     else:
         return (robot_loc, False)
 
 #function to move robot up and left
 def move_upleft(robot_loc):
-    x = robot_loc[0]
-    y = robot_loc[1]
-    x -= 1
-    y -= 1
-    new_robot_loc = (x,y)
-    if x >= 0 and y >= 0:
+    i = robot_loc[0]
+    j = robot_loc[1]
+    i -= 1
+    j -= 1
+    new_robot_loc = (i,j)
+    if i >= 0 and j >= 0:
         return (new_robot_loc, True)
     else:
         return (robot_loc, False)
 
 #function to move robot down and left
 def move_downleft(robot_loc):
-    x = robot_loc[0]
-    y = robot_loc[1]
-    x += 1
-    y -= 1
-    new_robot_loc = (x, y)
-    if x >= 0 and y >= 0:
+    i = robot_loc[0]
+    j = robot_loc[1]
+    i += 1
+    j -= 1
+    new_robot_loc = (i, j)
+    if i >= 0 and j >= 0:
         return (new_robot_loc, True)
     else:
         return (robot_loc, False)
 
 #function to move robot down and right
 def move_downright(robot_loc):
-    x = robot_loc[0]
-    y = robot_loc[1]
-    x += 1
-    y += 1
-    new_robot_loc = (x, y)
-    if x >= 0 and y >= 0:
+    i = robot_loc[0]
+    j = robot_loc[1]
+    i += 1
+    j += 1
+    new_robot_loc = (i, j)
+    if i >= 0 and j >= 0:
         return (new_robot_loc, True)
     else:
         return (robot_loc, False)
@@ -175,7 +175,7 @@ def robot_path_graph(init, size_x, size_y):
     if x < size_x and y < size_y:
         path_graph = {}
 
-        elif x == size_x - 1 and y == size_y - 1:
+        if x == size_x - 1 and y == size_y - 1:
             path_graph[(x, y)] = {(x - 1, y), (x - 1, y - 1), (x, y - 1)}
 
         elif x == size_x - 1 and y == 0:
@@ -388,9 +388,9 @@ display_canvas = np.zeros((251, 601, 3), np.uint8)
 
 #defining a color to all the non-obstacle spaces
 for c in total_points:
-    x = c[1]
-    y = c[0]
-    display_canvas[(x, y)] = [255, 0, 255]
+    i = c[1]
+    j = c[0]
+    display_canvas[(i, j)] = [255, 0, 255]
 
 #flipping the graph with respect to y-axis
 display_canvas = np.flipud(display_canvas)
@@ -406,10 +406,10 @@ cv2.destroyAllWindows()
 #display the traverse path and write the video
 out = cv2.VideoWriter('dijkstra.avi', cv2.VideoWriter_fourcc(*'XVID'), 25, (600, 250))
 for pos in traversed:
-    x = pos[0]
-    y = pos[1]
-    y = int(250 - y)
-    cv2.rectangle(display_canvas_copy_visited, (x, y), (x + 1, y - 1), (0, 0, 255), -1)
+    i = pos[0]
+    j = pos[1]
+    j = int(250 - j)
+    cv2.rectangle(display_canvas_copy_visited, (i, j), (i + 1, j - 1), (0, 0, 255), -1)
     out.write(display_canvas_copy_visited)
     cv2.imshow('Robot', display_canvas_copy_visited)
     if cv2.waitKey(1) & 0xFF == ord('q'):  # Exit if 'q' is pressed
@@ -420,9 +420,9 @@ cv2.destroyAllWindows()
 
 #Redefining the coordinates to display the traversed path.
 for pos in traversed:
-    x = pos[0]
-    y = pos[1]
-    display_canvas_copy_backtrack[(250 - y, x)] = [255, 0, 0]
+    i = pos[0]
+    j = pos[1]
+    display_canvas_copy_backtrack[(250 - j, i)] = [255, 0, 0]
 
 #Resizing and displaying the image
 res_rob_bactrack = cv2.resize(display_canvas_copy_backtrack, (1200, 500))
@@ -433,9 +433,9 @@ cv2.destroyAllWindows()
 
 #Redifing the coordinates to display the shortest path
 for pos in rob_backtrack:
-    x = pos[0]
-    y = pos[1]
-    display_canvas_copy_backtrack[(250 - y, x)] = [0, 255, 0]
+    i = pos[0]
+    j = pos[1]
+    display_canvas_copy_backtrack[(250 - j, i)] = [0, 255, 0]
 
 #Resizing and displaying the shortest path
 res_rob_bactrack = cv2.resize(display_canvas_copy_backtrack, (1200, 500))
