@@ -1,6 +1,6 @@
 #ENPM-661 project 2, Path planning for point robot using Dijkstra Algorithm
 
-
+#github link
 #Importing all the required packages
 import cv2
 import time
@@ -318,7 +318,7 @@ def robot_space(max_x, max_y, init, final):
         if (x >= 100 and x <= 150 and y >= 150 and y <= 250):
             obstacle_space.append((x, y))
 
-        if is_inside_hexagon(x, y):
+        if in_hexagon(x, y):
             obstacle_space.append((x, y))
             print('hex found')
 
